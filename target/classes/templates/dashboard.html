@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head('Dashboard emocional • MenteNeural')"></head>
+
+<body>
+<div th:replace="fragments/layout :: navbar"></div>
+
+<section style="padding:40px 0 70px 0;">
+    <div class="container">
+
+        <!-- CABEÇALHO -->
+        <div style="margin-bottom:24px;">
+            <h1 style="font-size:2rem; font-weight:650; margin-bottom:6px;">
+                Dashboard emocional
+            </h1>
+            <p class="subtitle" th:if="${colab != null}">
+                Olá, <strong th:text="${colab.nome}">Colaborador</strong>. Aqui você acompanha um resumo
+                dos seus registros de humor.
+            </p>
+            <p class="subtitle" th:if="${colab == null}">
+                Uma visão geral dos registros de humor.
+            </p>
+        </div>
+
+        <!-- CARDS PRINCIPAIS -->
+        <div style="display:flex; gap:20px; flex-wrap:wrap; margin-bottom:24px;">
+            <div class="card" style="flex:1; min-width:220px;">
+                <p class="muted" style="margin-bottom:4px;">Média de humor (últimos 30 dias)</p>
+                <p style="font-size:1.8rem; font-weight:600;">
+                    <span th:text="${#numbers.formatDecimal(media30, 1, 1)}">0,0</span> / 5
+                </p>
+            </div>
+
+            <div class="card" style="flex:1; min-width:220px;">
+                <p class="muted" style="margin-bottom:4px;">Dias com humor positivo</p>
+                <p style="font-size:1.8rem; font-weight:600;">
+                    <span th:text="${#numbers.formatDecimal(percPositivo, 1, 1)}">0,0</span>%
+                </p>
+            </div>
+
+            <div class="card" style="flex:1; min-width:220px;">
+                <p class="muted" style="margin-bottom:4px;">Registros totais</p>
+                <p style="font-size:1.8rem; font-weight:600;"
+                   th:text="${totalRegistros}">0</p>
+            </div>
+        </div>
+
+        <!-- GRID INFERIOR -->
+        <div style="display:flex; gap:20px; flex-wrap:wrap;">
+            <!-- Tendência 7 dias -->
+            <div class="card" style="flex:2; min-width:260px;">
+                <h2 style="font-size:1.1rem; margin-bottom:8px;">Tendência dos últimos 7 dias</h2>
+                <p class="subtitle" style="margin-bottom:14px;">
+                    Representação visual simples da média de humor por dia.
+                </p>
+
+                <div th:if="${#lists.isEmpty(tendencia7dias)}">
+                    <p class="subtitle">Ainda não há registros suficientes para exibir a tendência.</p>
+                </div>
+
+                <div th:if="${!#lists.isEmpty(tendencia7dias)}"
+                     style="display:flex; flex-direction:column; gap:8px;">
+                    <div th:each="p : ${tendencia7dias}">
+                        <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:4px;">
+                            <!-- aqui usamos p.key direto -->
+                            <span th:text="${p.key}">01/01</span>
+                            <span th:text="${#numbers.formatDecimal(p.value, 1, 1) + ' / 5'}">3,5 / 5</span>
+                        </div>
+                        <div style="width:100%; height:8px; border-radius:999px; background:#E5E7EB;">
+                            <div style="height:8px; border-radius:999px; background:var(--mn-accent);"
+                                 th:style="'width:' + (${p.value} * 20) + '%;'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Últimos registros -->
+            <div class="card" style="flex:1; min-width:260px;">
+                <h2 style="font-size:1.1rem; margin-bottom:8px;">Últimos registros</h2>
+
+                <div th:if="${#lists.isEmpty(ultimosRegistros)}">
+                    <p class="subtitle">Você ainda não registrou seu humor. Que tal começar hoje?</p>
+                </div>
+
+                <div th:if="${!#lists.isEmpty(ultimosRegistros)}">
+                    <div th:each="r, idxStat : ${ultimosRegistros}" style="margin-bottom:10px;">
+                        <p style="font-size:0.9rem;">
+                            <strong th:text="${#temporals.format(r.dataHora, 'dd/MM HH:mm')}">Hoje</strong>
+                            – Humor
+                            <span th:text="${r.nivelHumor + '/5'}">4/5</span>
+                        </p>
+                        <p class="subtitle" style="font-size:0.85rem;"
+                           th:text="${r.observacao}">Observação...</p>
+                    </div>
+
+                    <a href="/ui/humores"
+                       style="display:inline-block; margin-top:4px; font-size:0.85rem;
+                              color:var(--mn-accent); text-decoration:none;">
+                        Ver todos os registros →
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>

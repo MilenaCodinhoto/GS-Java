@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head('Entrar • MenteNeural')"></head>
+
+<body>
+<div th:replace="fragments/layout :: navbar"></div>
+
+<div class="container">
+
+    <div class="card" style="max-width:420px;margin:60px auto;padding:40px 32px;">
+
+        <div class="title" style="font-size:26px;margin-bottom:6px;">
+            Bem-vindo(a) ao MenteNeural
+        </div>
+
+        <div class="subtitle" style="margin-bottom:30px;">
+            Acesse com seu e-mail corporativo para acompanhar seu bem-estar emocional.
+        </div>
+
+        <!-- Erro -->
+        <div th:if="${erro}"
+             style="background:#FEF2F2;border:1px solid #FCA5A5;color:#B91C1C;
+                    padding:12px 16px;border-radius:12px;margin-bottom:22px;
+                    font-size:14px;font-weight:500;"
+             th:text="${erro}">
+        </div>
+
+        <form th:action="@{/login}" th:object="${loginForm}" method="post">
+
+            <!-- EMAIL -->
+            <div style="margin-bottom:20px;">
+                <label style="display:block;font-weight:600;margin-bottom:6px;">
+                    E-mail corporativo
+                </label>
+
+                <input type="email"
+                       th:field="*{email}"
+                       placeholder="voce@empresa.com"
+                       style="width:100%;border-radius:14px;border:1px solid #E2E8F0;
+                              padding:12px 16px;font-size:15px;outline:none;transition:0.2s;">
+            </div>
+
+            <!-- SENHA -->
+            <div style="margin-bottom:28px;">
+                <label style="display:block;font-weight:600;margin-bottom:6px;">
+                    Senha
+                </label>
+
+                <input type="password"
+                       th:field="*{senha}"
+                       placeholder="Digite sua senha"
+                       style="width:100%;border-radius:14px;border:1px solid #E2E8F0;
+                              padding:12px 16px;font-size:15px;outline:none;transition:0.2s;">
+            </div>
+
+            <!-- BOTÃO -->
+            <button type="submit"
+                    class="btn-primary"
+                    style="width:100%;justify-content:center;padding:14px 0;font-size:16px;">
+                Entrar
+            </button>
+
+            <!-- Link de cadastro -->
+            <p style="margin-top:18px;font-size:14px;color:#6C6C70;text-align:center;">
+                Ainda não tem conta?
+                <a href="/cadastro"
+                   style="color:#4B7BD8;text-decoration:none;font-weight:500;">
+                    Criar conta
+                </a>
+            </p>
+
+        </form>
+
+    </div>
+</div>
+
+<!-- Mini efeito de foco (Apple-like) -->
+<style>
+    input:focus {
+        border-color: #A7C7E7 !important;
+        background: #F8FBFF !important;
+        box-shadow: 0 0 0 3px rgba(167,199,231,0.35);
+    }
+</style>
+
+</body>
+</html>

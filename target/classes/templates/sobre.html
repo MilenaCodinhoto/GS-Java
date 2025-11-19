@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head('Sobre • MindTech | MenteNeural')"></head>
+
+<body>
+<div th:replace="fragments/layout :: navbar"></div>
+
+
+<!-- HERO -->
+<section style="
+    padding:60px 0;
+    background: linear-gradient(180deg, #faf7f8 0%, #ffffff 100%);
+">
+    <div class="container" style="display:flex; gap:40px; align-items:center; flex-wrap:wrap;">
+
+        <div style="flex:1; min-width:280px;">
+            <h1 style="font-size:2.4rem; font-weight:650; margin-bottom:18px;">
+                Sobre a <span style="color:var(--mn-accent)">MindTech</span>
+            </h1>
+
+            <p class="subtitle" style="font-size:1.05rem; line-height:1.6;">
+                Somos uma equipe apaixonada por tecnologia, inovação e principalmente por
+                criar soluções que aproximam pessoas daquilo que realmente importa:
+                <strong>saúde mental, equilíbrio e bem-estar no ambiente de trabalho</strong>.
+            </p>
+        </div>
+
+        <div style="flex:1; min-width:280px; text-align:center;">
+            <img src="/img/saude-mental.jpg"
+                 alt="MindTech"
+                 style="max-width:90%; border-radius:20px; box-shadow:0 8px 30px rgba(0,0,0,0.08);">
+        </div>
+
+    </div>
+</section>
+
+
+<!-- SOBRE A SOLUÇÃO -->
+<section style="padding:60px 0;">
+    <div class="container">
+
+        <div class="card" style="margin-bottom:28px;">
+            <h2 style="font-size:1.6rem; margin-bottom:12px;">A Plataforma MenteNeural</h2>
+
+            <p class="subtitle" style="line-height:1.7; font-size:1rem;">
+                A MenteNeural é uma plataforma criada para transformar o ambiente de trabalho
+                em um espaço mais humano e saudável. Inspirada na combinação entre
+                <strong>tecnologia, psicologia e experiência do usuário</strong>, ela utiliza IA para
+                identificar sinais de cansaço, padrões emocionais e hábitos que influenciam
+                o bem-estar de colaboradores — sempre de maneira ética e respeitosa.
+            </p>
+        </div>
+
+        <!-- BENÉFICIOS -->
+        <div class="card" style="margin-bottom:28px;">
+            <h3 style="font-size:1.2rem; margin-bottom:14px; font-weight:600;">
+                Como a MenteNeural funciona?
+            </h3>
+
+            <ul style="line-height:1.8; color:var(--mn-muted); font-size:0.97rem; margin-left:20px;">
+                <li>Monitora padrões de uso e identifica longos períodos sem pausas.</li>
+                <li>Envia lembretes gentis de autocuidado e recomendações rápidas.</li>
+                <li>Coleta registros de humor de forma simples e intuitiva.</li>
+                <li>Oferece meditações curtas, respirações guiadas e mensagens motivacionais.</li>
+                <li>Gera relatórios e dashboards emocionais personalizados.</li>
+            </ul>
+        </div>
+
+        <!-- MISSÃO -->
+        <div class="card" style="margin-bottom:28px; display:flex; flex-wrap:wrap; gap:20px; align-items:center;">
+
+            <div style="flex:1; min-width:260px;">
+                <h3 style="font-size:1.2rem; margin-bottom:10px;">Nossa Missão</h3>
+                <p class="subtitle" style="line-height:1.7; font-size:1rem;">
+                    Promover o bem-estar emocional por meio de tecnologia acessível, intuitiva
+                    e empática. Acreditamos que colaboradores saudáveis criam ambientes mais
+                    fortes, produtivos e humanos.
+                </p>
+            </div>
+
+            <div style="flex:1; min-width:260px; text-align:center;">
+                <img src="/img/bem-estar.jpg"
+                     alt="Bem-estar"
+                     style="max-width:85%; border-radius:18px; box-shadow:0 8px 30px rgba(0,0,0,0.06);">
+            </div>
+        </div>
+
+        <!-- VALORES -->
+        <div class="card" style="margin-bottom:20px;">
+            <h3 style="font-size:1.2rem; margin-bottom:10px;">Nossos Valores</h3>
+
+            <div style="display:flex; gap:20px; flex-wrap:wrap;">
+                <div style="flex:1; min-width:200px;">
+                    <p class="pill" style="margin-bottom:6px;">🌱 Humanidade</p>
+                    <p class="subtitle">Cuidamos de pessoas, não de números.</p>
+                </div>
+
+                <div style="flex:1; min-width:200px;">
+                    <p class="pill" style="margin-bottom:6px;">🔐 Privacidade</p>
+                    <p class="subtitle">Os dados pertencem ao usuário. Sempre.</p>
+                </div>
+
+                <div style="flex:1; min-width:200px;">
+                    <p class="pill" style="margin-bottom:6px;">🤖 Tecnologia Ética</p>
+                    <p class="subtitle">IA como apoio, não vigilância.</p>
+                </div>
+
+                <div style="flex:1; min-width:200px;">
+                    <p class="pill" style="margin-bottom:6px;">✨ Simplicidade</p>
+                    <p class="subtitle">Interfaces limpas, leves e acolhedoras.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- IMPACTO -->
+        <div class="card">
+            <h3 style="font-size:1.2rem; margin-bottom:10px;">Impacto Esperado</h3>
+
+            <p class="subtitle" style="line-height:1.7; font-size:1rem;">
+                Acreditamos que a MenteNeural pode revolucionar a forma como empresas
+                cuidam de seus colaboradores — substituindo pressão por equilíbrio, e números
+                por seres humanos.
+                Queremos tornar o bem-estar uma prioridade diária, acessível e natural para todos.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- EQUIPE -->
+<section style="padding:40px 0 70px 0; background:#faf7f8;">
+    <div class="container">
+        <h2 style="font-size:1.6rem; margin-bottom:22px;">Equipe MindTech</h2>
+
+        <div style="display:flex; gap:20px; flex-wrap:wrap;">
+
+            <div class="card" style="flex:1; min-width:220px;">
+                <h3 style="font-size:1.1rem; margin-bottom:6px;">MindTech</h3>
+                <p class="subtitle">Equipe oficial da Global Solution 2025.</p>
+                <p class="subtitle" style="margin-top:8px;">
+                    Composta por estudantes apaixonados por tecnologia, inovação e impacto humano.
+                </p>
+            </div>
+
+            <div class="card" style="flex:1; min-width:220px;">
+                <h3 style="font-size:1.1rem; margin-bottom:6px;">Nosso Compromisso</h3>
+                <p class="subtitle">
+                    Entregar soluções reais que ajudem empresas a cuidar de pessoas — com empatia,
+                    responsabilidade e tecnologia de ponta.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>

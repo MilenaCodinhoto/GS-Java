@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head('MenteNeural • Bem-estar no trabalho')"></head>
+
+<body>
+<div th:replace="fragments/layout :: navbar"></div>
+
+<!-- HERO -->
+<section style="padding:60px 0 40px 0;">
+    <div class="container" style="display:flex;flex-wrap:wrap;gap:40px;align-items:center;">
+        <div style="flex:1;min-width:280px;">
+            <p class="pill" style="margin-bottom:16px;">
+                Equilíbrio emocional no ambiente de trabalho
+            </p>
+            <h1 style="font-size:2.4rem;font-weight:650;margin-bottom:16px;">
+                Entenda como você se sente enquanto trabalha.
+            </h1>
+            <p class="subtitle" style="font-size:0.98rem;margin-bottom:24px;">
+                O MenteNeural registra seus estados emocionais e transforma essa jornada
+                em informações claras, simples e cuidadosas — para você e para sua empresa.
+            </p>
+
+            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                <a href="/ui/humores/novo" class="btn-primary">
+                    Registrar humor agora
+                </a>
+                <a href="/dashboard" class="muted" style="display:inline-flex;align-items:center;">
+                    Ver meu dashboard →
+                </a>
+            </div>
+        </div>
+
+        <div style="flex:1;min-width:280px;">
+            <div class="card" style="padding:22px 22px 8px 22px;">
+                <p class="subtitle" style="margin-bottom:16px;">
+                    Hoje, como você está se sentindo em relação ao trabalho?
+                </p>
+
+                <div style="display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap;">
+                    <span class="pill">Calmo(a)</span>
+                    <span class="pill">Motivado(a)</span>
+                    <span class="pill">Cansado(a)</span>
+                    <span class="pill">Sobrecarregado(a)</span>
+                </div>
+
+                <div style="border-radius:12px;border:1px dashed var(--mn-border);
+                            padding:14px 16px;margin-bottom:10px;">
+                    <p class="muted" style="margin-bottom:6px;font-size:0.86rem;">
+                        Dica de autocuidado
+                    </p>
+                    <p style="font-size:0.9rem;">
+                        Faça uma pausa de 2 minutos, respire fundo e observe como seu corpo se sente agora.
+                    </p>
+                </div>
+
+                <a href="/ui/humores/novo" class="muted"
+                   style="display:inline-flex;align-items:center;font-size:0.88rem;margin-bottom:8px;">
+                    Registrar humor em menos de 30 segundos →
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- RESUMO / CARDS -->
+<section style="padding:10px 0 60px 0;">
+    <div class="container">
+        <div class="card" style="display:flex;flex-wrap:wrap;gap:26px;align-items:center;">
+            <div style="flex:1;min-width:230px;">
+                <h2 style="font-size:1.4rem;margin-bottom:8px;">Seu resumo emocional</h2>
+                <p class="subtitle">
+                    Um olhar rápido sobre como tem sido seus últimos dias no trabalho.
+                    Esses números são apenas exemplo – depois você pode ligá-los aos dados reais.
+                </p>
+            </div>
+
+            <div style="display:flex;gap:18px;flex-wrap:wrap;">
+                <div style="min-width:120px;">
+                    <p class="muted" style="margin-bottom:4px;">Dias registrados</p>
+                    <p style="font-size:1.6rem;font-weight:600;">32</p>
+                </div>
+                <div style="min-width:120px;">
+                    <p class="muted" style="margin-bottom:4px;">Humor médio</p>
+                    <p style="font-size:1.6rem;font-weight:600;">3,8 / 5</p>
+                </div>
+                <div style="min-width:120px;">
+                    <p class="muted" style="margin-bottom:4px;">Últimos 7 dias</p>
+                    <p style="font-size:1.6rem;font-weight:600;">Mais estáveis</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- LINKS PRINCIPAIS -->
+<section style="padding-bottom:80px;">
+    <div class="container">
+        <h2 style="font-size:1.4rem;margin-bottom:18px;">O que você deseja fazer?</h2>
+
+        <div style="display:flex;gap:20px;flex-wrap:wrap;">
+            <a href="/ui/humores" class="card" style="flex:1;min-width:240px;">
+                <h3 style="font-size:1.1rem;margin-bottom:6px;">Ver meus registros</h3>
+                <p class="subtitle">Acompanhe como você se sentiu ao longo dos dias.</p>
+            </a>
+
+            <a href="/ui/humores/novo" class="card" style="flex:1;min-width:240px;">
+                <h3 style="font-size:1.1rem;margin-bottom:6px;">Registrar um novo humor</h3>
+                <p class="subtitle">Guarde esse momento em menos de um minuto.</p>
+            </a>
+
+            <a href="/dashboard" class="card" style="flex:1;min-width:240px;">
+                <h3 style="font-size:1.1rem;margin-bottom:6px;">Explorar meu dashboard</h3>
+                <p class="subtitle">Veja tendências, picos de stress e momentos de equilíbrio.</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

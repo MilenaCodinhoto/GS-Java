@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head('Novo registro de humor • MenteNeural')"></head>
+
+<body>
+<div th:replace="fragments/layout :: navbar"></div>
+
+<section style="padding:40px 0 70px 0;">
+    <div class="container">
+
+        <div class="card" style="max-width:520px; margin:0 auto;">
+            <h1 class="title" style="font-size:1.4rem; margin-bottom:6px;">
+                Novo registro de humor
+            </h1>
+            <p class="subtitle" style="margin-bottom:18px;">
+                Como você está se sentindo agora? Esse registro ajuda a acompanhar sua jornada emocional no trabalho.
+            </p>
+
+            <!-- ERRO SIMPLES OPCIONAL (se você quiser usar do controller com mv.addObject("erro", "...")) -->
+            <div th:if="${erro}"
+                 style="background:#FEF2F2;border:1px solid #FCA5A5;color:#B91C1C;
+                        padding:10px 14px;border-radius:12px;font-size:0.85rem;margin-bottom:12px;"
+                 th:text="${erro}">
+            </div>
+
+            <!-- FORMULÁRIO -->
+            <form th:action="@{/ui/humores}"
+                  th:object="${registroHumor}"
+                  method="post"
+                  style="display:flex; flex-direction:column; gap:14px;">
+
+                <!-- NÍVEL DE HUMOR -->
+                <div>
+                    <label style="display:block;font-weight:500;margin-bottom:6px;">
+                        Nível de humor
+                    </label>
+                    <p class="subtitle" style="font-size:0.85rem;margin-bottom:8px;">
+                        De 1 a 5, sendo 1 muito ruim e 5 excelente.
+                    </p>
+
+                    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                        <label style="display:inline-flex; align-items:center; gap:4px; font-size:0.9rem;">
+                            <input type="radio" th:field="*{nivelHumor}" value="1"> 1
+                        </label>
+                        <label style="display:inline-flex; align-items:center; gap:4px; font-size:0.9rem;">
+                            <input type="radio" th:field="*{nivelHumor}" value="2"> 2
+                        </label>
+                        <label style="display:inline-flex; align-items:center; gap:4px; font-size:0.9rem;">
+                            <input type="radio" th:field="*{nivelHumor}" value="3"> 3
+                        </label>
+                        <label style="display:inline-flex; align-items:center; gap:4px; font-size:0.9rem;">
+                            <input type="radio" th:field="*{nivelHumor}" value="4"> 4
+                        </label>
+                        <label style="display:inline-flex; align-items:center; gap:4px; font-size:0.9rem;">
+                            <input type="radio" th:field="*{nivelHumor}" value="5"> 5
+                        </label>
+                    </div>
+                </div>
+
+                <!-- OBSERVAÇÃO -->
+                <div>
+                    <label style="display:block;font-weight:500;margin-bottom:6px;">
+                        Observação (opcional)
+                    </label>
+                    <textarea th:field="*{observacao}"
+                              rows="4"
+                              placeholder="Quer anotar algo sobre como está se sentindo?"
+                              style="width:100%;border-radius:14px;border:1px solid #E2E8F0;
+                                     padding:10px 14px;font-size:0.9rem;outline:none;resize:vertical;"></textarea>
+                </div>
+
+                <!-- BOTÕES -->
+                <div style="display:flex; justify-content:space-between; gap:10px; margin-top:10px;">
+                    <a href="/ui/humores"
+                       style="font-size:0.9rem;color:#6B7280;text-decoration:none;">
+                        Voltar para lista
+                    </a>
+
+                    <button type="submit" class="btn-primary" style="justify-content:center;">
+                        Salvar registro
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>

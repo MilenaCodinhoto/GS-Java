@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head('Registros de Humor • MenteNeural')"></head>
+
+<body>
+<div th:replace="fragments/layout :: navbar"></div>
+
+<section style="padding:40px 0 70px 0;">
+    <div class="container">
+
+        <!-- CABEÇALHO + BOTÃO -->
+        <div class="card" style="margin-bottom:24px; padding:22px 24px 18px 24px;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;">
+                <div>
+                    <h1 style="font-size:1.5rem; font-weight:600; margin-bottom:6px;">
+                        Registros de Humor
+                    </h1>
+                    <p class="subtitle" style="max-width:460px;">
+                        Sua jornada emocional registrada com cuidado. Acompanhe como você tem se sentido
+                        ao longo dos dias de trabalho.
+                    </p>
+                </div>
+
+                <div style="display:flex; gap:10px; align-items:center;">
+                    <a href="/ui/humores/novo" class="btn-primary" style="justify-content:center;">
+                        Novo registro
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESUMO RÁPIDO (exemplo estático) -->
+        <div class="card" style="margin-bottom:24px;">
+            <div style="display:flex; gap:20px; flex-wrap:wrap;">
+                <div style="flex:1; min-width:180px;">
+                    <p class="muted" style="margin-bottom:4px;">Registros totais</p>
+                    <p style="font-size:1.5rem; font-weight:600;"
+                       th:text="${#lists.size(humores)}">0</p>
+                </div>
+                <div style="flex:1; min-width:180px;">
+                    <p class="muted" style="margin-bottom:4px;">Último registro</p>
+                    <p style="font-size:0.95rem;"
+                       th:text="${#lists.isEmpty(humores) ? '—' : #temporals.format(humores.get(0).dataHora, 'dd/MM/yyyy HH:mm')}">
+                        —
+                    </p>
+                </div>
+                <div style="flex:1; min-width:180px;">
+                    <p class="muted" style="margin-bottom:4px;">Humor médio (exemplo)</p>
+                    <p style="font-size:1.5rem; font-weight:600;">3,8 / 5</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- LISTAGEM -->
+        <div class="card">
+
+            <!-- estado vazio -->
+            <div th:if="${#lists.isEmpty(humores)}">
+                <p class="subtitle" style="margin-bottom:14px;">
+                    Você ainda não registrou nenhum humor.
+                </p>
+                <a href="/ui/humores/novo" class="btn-primary" style="justify-content:center;">
+                    Fazer meu primeiro registro
+                </a>
+            </div>
+
+            <!-- tabela -->
+            <div th:if="${!#lists.isEmpty(humores)}">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+                    <p class="muted">Lista de registros recentes</p>
+                </div>
+
+                <div style="overflow-x:auto;">
+                    <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+                        <thead>
+                        <tr style="text-align:left; border-bottom:1px solid var(--mn-border);">
+                            <th style="padding:8px 0;">Colaborador</th>
+                            <th style="padding:8px 0;">Data/Hora</th>
+                            <th style="padding:8px 0;">Nível</th>
+                            <th style="padding:8px 0;">Observação</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="h : ${humores}"
+                            style="border-bottom:1px solid #f3f4f6;">
+                            <td style="padding:10px 0;"
+                                th:text="${h.colaborador != null ? h.colaborador.nome : '—'}">
+                                Nome
+                            </td>
+                            <td style="padding:10px 0; color:var(--mn-muted);"
+                                th:text="${#temporals.format(h.dataHora, 'dd/MM/yyyy HH:mm')}">
+                                01/01/2025 09:00
+                            </td>
+                            <td style="padding:10px 0;">
+                                <span class="pill"
+                                      th:text="${h.nivelHumor + ' / 5'}"></span>
+                            </td>
+                            <td style="padding:10px 0; color:var(--mn-muted); max-width:340px;">
+                                <span th:text="${h.observacao}">—</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>

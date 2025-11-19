@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head('Cadastro • MenteNeural')"></head>
+
+<body>
+<div th:replace="fragments/layout :: navbar"></div>
+
+<div class="container">
+    <div class="card" style="max-width:480px;margin:50px auto;">
+        <div class="title" style="font-size:24px;">Criar conta</div>
+        <div class="subtitle">
+            Cadastre-se para começar a acompanhar seu bem-estar emocional no trabalho.
+        </div>
+
+        <div th:if="${erro}"
+             style="background:#FEF2F2;border:1px solid #FCA5A5;color:#B91C1C;
+                    padding:10px 14px;border-radius:12px;margin-bottom:18px;font-size:14px;"
+             th:text="${erro}">
+        </div>
+
+        <form th:action="@{/cadastro}" th:object="${form}" method="post">
+
+            <!-- Nome -->
+            <div style="margin-bottom:16px;">
+                <label style="display:block;font-weight:500;margin-bottom:6px;">Nome completo</label>
+                <input th:field="*{nome}" type="text"
+                       placeholder="Seu nome"
+                       style="width:100%;border-radius:14px;border:1px solid #E2E8F0;
+                              padding:10px 14px;font-size:14px;outline:none;">
+            </div>
+
+            <div style="margin-bottom:16px;">
+                <label style="display:block;font-weight:500;margin-bottom:6px;">E-mail corporativo</label>
+                <input th:field="*{email}" type="email"
+                       placeholder="voce@empresa.com"
+                       style="width:100%;border-radius:14px;border:1px solid #E2E8F0;
+                              padding:10px 14px;font-size:14px;outline:none;">
+            </div>
+
+            <!-- Cargo -->
+            <div style="margin-bottom:16px;">
+                <label style="display:block;font-weight:500;margin-bottom:6px;">Cargo</label>
+                <input th:field="*{cargo}" type="text"
+                       placeholder="Ex.: Analista, Desenvolvedora..."
+                       style="width:100%;border-radius:14px;border:1px solid #E2E8F0;
+                              padding:10px 14px;font-size:14px;outline:none;">
+            </div>
+
+            <!-- Empresa -->
+            <div style="margin-bottom:16px;">
+                <label style="display:block;font-weight:500;margin-bottom:6px;">Empresa</label>
+
+                <select th:field="*{empresaId}"
+                        style="width:100%;border-radius:14px;border:1px solid #E2E8F0;
+                               padding:10px 14px;font-size:14px;outline:none;">
+
+                    <option value="">Selecione sua empresa...</option>
+
+                    <option th:each="e : ${empresas}"
+                            th:value="${e.id}"
+                            th:text="${e.nome}">
+                    </option>
+
+                </select>
+            </div>
+
+            <!-- Senha -->
+            <div style="margin-bottom:14px;">
+                <label style="display:block;font-weight:500;margin-bottom:6px;">Senha</label>
+                <input th:field="*{senha}" type="password"
+                       placeholder="Crie uma senha"
+                       style="width:100%;border-radius:14px;border:1px solid #E2E8F0;
+                              padding:10px 14px;font-size:14px;outline:none;">
+            </div>
+
+            <!-- Confirmar senha -->
+            <div style="margin-bottom:22px;">
+                <label style="display:block;font-weight:500;margin-bottom:6px;">Confirmar senha</label>
+                <input th:field="*{confirmarSenha}" type="password"
+                       placeholder="Repita a senha"
+                       style="width:100%;border-radius:14px;border:1px solid #E2E8F0;
+                              padding:10px 14px;font-size:14px;outline:none;">
+            </div>
+
+            <!-- Botão -->
+            <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">
+                Criar conta e entrar
+            </button>
+
+            <!-- Link para login -->
+            <p style="margin-top:14px;font-size:13px;color:#6C6C70;text-align:center;">
+                Já tem conta?
+                <a href="/login" style="color:#4B7BD8;text-decoration:none;">Entrar</a>
+            </p>
+
+        </form>
+    </div>
+</div>
+
+<style>
+    input:focus, select:focus {
+        border-color: #A7C7E7 !important;
+        background: #F8FBFF !important;
+        box-shadow: 0 0 0 3px rgba(167,199,231,0.35);
+    }
+</style>
+
+</body>
+</html>
