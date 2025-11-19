@@ -1,65 +1,61 @@
 # 🌿 MenteNeural — Plataforma de Bem-Estar Emocional no Trabalho
 
-MenteNeural é uma aplicação desenvolvida para monitoramento emocional de colaboradores, permitindo que empresas acompanhem índices de humor, frequência de estresse e tendências emocionais — tudo de forma simples, intuitiva e humanizada.
+**MenteNeural** é uma plataforma criada para auxiliar empresas no acompanhamento do bem-estar emocional de seus colaboradores.  
+A aplicação permite registrar, visualizar e analisar tendências de humor de forma **intuitiva, humanizada e centrada no usuário**.
 
-Desenvolvido com **Java Spring Boot**, **Thymeleaf** e **Oracle Database** como parte da Global Solution FIAP.
+Este projeto foi desenvolvido como parte da **Global Solution FIAP**, utilizando **Java Spring Boot**, **Thymeleaf**, **Oracle Database** e princípios modernos de arquitetura e design.
+
+---
+
+## 🎯 Propósito do Projeto
+
+A saúde mental no ambiente corporativo é um pilar fundamental para produtividade, segurança e clima organizacional.  
+A MenteNeural foi idealizada para:
+
+- Mapear flutuações emocionais no trabalho
+- Entregar dados visuais de maneira simples
+- Apoiar equipes de RH e liderança
+- Promover ambientes mais saudáveis e acolhedores
+
+Com um design minimalista inspirado em interfaces modernas, a plataforma busca ser leve, acolhedora e confortável de usar.
 
 ---
 
 ## ✨ Funcionalidades
 
-### 👤 Autenticação e Cadastro
-- Login com e-mail corporativo e senha
+### 👤 Autenticação & Onboarding
+- Login por e-mail corporativo e senha
 - Cadastro de novos colaboradores
-- Sessão persistente com HttpSession
-- Validações completas
+- Seleção de empresa no cadastro
+- Controle de sessão com HttpSession
+- Tratamento de erros e mensagens amigáveis
+
+---
 
 ### 😊 Registro de Humor
-- Cadastro de humor (1 a 5)
-- Observações opcionais
-- Data e hora geradas automaticamente
-- Associação ao colaborador logado
+- Registro diário (1 a 5)
+- Observação opcional
+- Data/hora geradas automaticamente
+- Associação automática ao colaborador logado
+- Tela dedicada, simples e validada
+
+---
 
 ### 📊 Dashboard Emocional
-- Média dos últimos 30 dias
-- Porcentagem de dias positivos
-- Tendência dos últimos 7 dias
-- Últimos registros
-- Layout minimalista moderno
 
-### 🧩 API REST
-- `POST /api/humores`
-- `GET /api/humores/colaborador/{id}`
+O Dashboard emocional exibe:
 
----
-
-## 🛠️ Tecnologias Utilizadas
-
-- Java 21 (Amazon Corretto)
-- Spring Boot 3
-- Spring MVC + Thymeleaf
-- Oracle SQL + SQL Developer
-- Maven
-- Postman
-- HTML + CSS minimalista
+- 📌 **Média dos últimos 30 dias**
+- 😊 **% de humor positivo**
+- 🗂️ **Total de registros**
+- 📈 **Tendência dos últimos 7 dias**
+- 📝 **Histórico recente**
+- Design minimalista e moderno
 
 ---
 
-## 📁 Estrutura do Projeto
+## 🧩 API REST Integrada
 
-```text
-src/main/java/br/com/fiap
-│
-├── controller
-│   ├── ui
-│   └── api
-│
-├── dto
-│
-├── exception
-│
-├── model
-│
-├── repository
-│
-└── MenteNeuralApplication.java
+### Criar registro de humor
+```http
+POST /api/humores
