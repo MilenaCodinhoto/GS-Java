@@ -1,84 +1,102 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/layout :: head('Novo registro de humor • MenteNeural')"></head>
+<head th:replace="~{fragments/layout :: head('Novo registro de humor • MenteNeural')}"></head>
 
 <body>
-<div th:replace="fragments/layout :: navbar"></div>
+<div th:replace="~{fragments/layout :: navbar}"></div>
 
-<section style="padding:40px 0 70px 0;">
+<section class="py-4 py-md-5">
     <div class="container">
 
-        <div class="card" style="max-width:520px; margin:0 auto;">
-            <h1 class="title" style="font-size:1.4rem; margin-bottom:6px;">
-                Novo registro de humor
-            </h1>
-            <p class="subtitle" style="margin-bottom:18px;">
+        <div class="card p-4" style="max-width: 520px; margin: 0 auto;">
+
+            <h1 class="title mb-1" style="font-size: 1.4rem;">Novo registro de humor</h1>
+            <p class="subtitle mb-3">
                 Como você está se sentindo agora? Esse registro ajuda a acompanhar sua jornada emocional no trabalho.
             </p>
 
-            <!-- ERRO SIMPLES OPCIONAL (se você quiser usar do controller com mv.addObject("erro", "...")) -->
             <div th:if="${erro}"
-                 style="background:#FEF2F2;border:1px solid #FCA5A5;color:#B91C1C;
-                        padding:10px 14px;border-radius:12px;font-size:0.85rem;margin-bottom:12px;"
+                 class="alert alert-danger py-2 px-3 mb-3"
                  th:text="${erro}">
             </div>
 
-            <!-- FORMULÁRIO -->
             <form th:action="@{/ui/humores}"
                   th:object="${registroHumor}"
                   method="post"
-                  style="display:flex; flex-direction:column; gap:14px;">
+            >
 
-                <!-- NÍVEL DE HUMOR -->
-                <div>
-                    <label style="display:block;font-weight:500;margin-bottom:6px;">
+                <div class="mb-3">
+                    <label class="form-label fw-medium">
                         Nível de humor
                     </label>
-                    <p class="subtitle" style="font-size:0.85rem;margin-bottom:8px;">
+
+                    <p class="subtitle mb-2" style="font-size:0.85rem;">
                         De 1 a 5, sendo 1 muito ruim e 5 excelente.
                     </p>
 
-                    <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                        <label style="display:inline-flex; align-items:center; gap:4px; font-size:0.9rem;">
-                            <input type="radio" th:field="*{nivelHumor}" value="1"> 1
+                    <div class="d-flex flex-wrap gap-3">
+
+                        <label class="form-check-label d-flex align-items-center gap-1">
+                            <input class="form-check-input"
+                                   type="radio"
+                                   th:field="*{nivelHumor}"
+                                   value="1"> 1
                         </label>
-                        <label style="display:inline-flex; align-items:center; gap:4px; font-size:0.9rem;">
-                            <input type="radio" th:field="*{nivelHumor}" value="2"> 2
+
+                        <label class="form-check-label d-flex align-items-center gap-1">
+                            <input class="form-check-input"
+                                   type="radio"
+                                   th:field="*{nivelHumor}"
+                                   value="2"> 2
                         </label>
-                        <label style="display:inline-flex; align-items:center; gap:4px; font-size:0.9rem;">
-                            <input type="radio" th:field="*{nivelHumor}" value="3"> 3
+
+                        <label class="form-check-label d-flex align-items-center gap-1">
+                            <input class="form-check-input"
+                                   type="radio"
+                                   th:field="*{nivelHumor}"
+                                   value="3"> 3
                         </label>
-                        <label style="display:inline-flex; align-items:center; gap:4px; font-size:0.9rem;">
-                            <input type="radio" th:field="*{nivelHumor}" value="4"> 4
+
+                        <label class="form-check-label d-flex align-items-center gap-1">
+                            <input class="form-check-input"
+                                   type="radio"
+                                   th:field="*{nivelHumor}"
+                                   value="4"> 4
                         </label>
-                        <label style="display:inline-flex; align-items:center; gap:4px; font-size:0.9rem;">
-                            <input type="radio" th:field="*{nivelHumor}" value="5"> 5
+
+                        <label class="form-check-label d-flex align-items-center gap-1">
+                            <input class="form-check-input"
+                                   type="radio"
+                                   th:field="*{nivelHumor}"
+                                   value="5"> 5
                         </label>
+
                     </div>
                 </div>
 
-                <!-- OBSERVAÇÃO -->
-                <div>
-                    <label style="display:block;font-weight:500;margin-bottom:6px;">
+                <div class="mb-3">
+                    <label class="form-label fw-medium">
                         Observação (opcional)
                     </label>
                     <textarea th:field="*{observacao}"
+                              class="form-control"
                               rows="4"
                               placeholder="Quer anotar algo sobre como está se sentindo?"
-                              style="width:100%;border-radius:14px;border:1px solid #E2E8F0;
-                                     padding:10px 14px;font-size:0.9rem;outline:none;resize:vertical;"></textarea>
+                              style="resize: vertical;"></textarea>
                 </div>
 
-                <!-- BOTÕES -->
-                <div style="display:flex; justify-content:space-between; gap:10px; margin-top:10px;">
+                <div class="d-flex justify-content-between mt-3">
+
                     <a href="/ui/humores"
-                       style="font-size:0.9rem;color:#6B7280;text-decoration:none;">
+                       class="muted"
+                       style="font-size:0.9rem; text-decoration:none;">
                         Voltar para lista
                     </a>
 
-                    <button type="submit" class="btn-primary" style="justify-content:center;">
+                    <button type="submit" class="btn btn-primary">
                         Salvar registro
                     </button>
+
                 </div>
 
             </form>

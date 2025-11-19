@@ -31,7 +31,6 @@ public class ColaboradorController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Colaborador criar(@RequestBody @Valid Colaborador c) {
-        // se quiser, aplicar regra de negócio com BusinessException
         return repo.save(c);
     }
 

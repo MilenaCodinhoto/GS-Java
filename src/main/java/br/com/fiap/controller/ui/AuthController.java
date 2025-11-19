@@ -7,8 +7,10 @@ import br.com.fiap.model.Empresa;
 import br.com.fiap.repository.ColaboradorRepository;
 import br.com.fiap.repository.EmpresaRepository;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,9 +34,17 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ModelAndView doLogin(@ModelAttribute("loginForm") LoginForm form,
+    public ModelAndView doLogin(@ModelAttribute("loginForm") @Valid LoginForm form,
+                                BindingResult bindingResult,
                                 HttpSession session,
                                 RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+            var mv = new ModelAndView("login");
+            mv.addObject("loginForm", form);
+            mv.addObject("erro", "Preencha e-mail e senha corretamente.");
+            return mv;
+        }
 
         var optColab = colabRepo.findByEmailCorpAndSenha(form.getEmail(), form.getSenha());
 
@@ -46,7 +56,6 @@ public class AuthController {
         }
 
         Colaborador colaborador = optColab.get();
-
         session.setAttribute("colabLogado", colaborador);
 
         return new ModelAndView("redirect:/ui/humores");
@@ -58,7 +67,6 @@ public class AuthController {
         return "redirect:/login";
     }
 
-
     @GetMapping("/cadastro")
     public ModelAndView cadastroForm() {
         var mv = new ModelAndView("cadastro");
@@ -68,37 +76,33 @@ public class AuthController {
     }
 
     @PostMapping("/cadastro")
-    public ModelAndView processarCadastro(@ModelAttribute("form") CadastroColaboradorForm form,
+    public ModelAndView processarCadastro(@ModelAttribute("form") @Valid CadastroColaboradorForm form,
+                                          BindingResult bindingResult,
                                           HttpSession session) {
 
         var mv = new ModelAndView("cadastro");
-        mv.addObject("empresas", empresaRepo.findAll()); // pra recarregar o select em caso de erro
+        mv.addObject("empresas", empresaRepo.findAll());
 
-        if (form.getNome() == null || form.getNome().isBlank()
-                || form.getEmail() == null || form.getEmail().isBlank()
-                || form.getCargo() == null || form.getCargo().isBlank()
-                || form.getSenha() == null || form.getSenha().isBlank()) {
-            mv.addObject("erro", "Preencha todos os campos obrigatórios.");
+        if (bindingResult.hasErrors()) {
+            mv.addObject("form", form);
+            mv.addObject("erro", "Verifique os campos obrigatórios e tente novamente.");
             return mv;
         }
 
         if (!form.getSenha().equals(form.getConfirmarSenha())) {
+            mv.addObject("form", form);
             mv.addObject("erro", "As senhas não conferem.");
             return mv;
         }
 
-        if (form.getEmpresaId() == null) {
-            mv.addObject("erro", "Selecione a empresa em que você trabalha.");
-            return mv;
-        }
-
         if (colabRepo.existsByEmailCorp(form.getEmail())) {
+            mv.addObject("form", form);
             mv.addObject("erro", "Já existe um colaborador com este e-mail.");
             return mv;
         }
 
         Empresa empresa = empresaRepo.findById(form.getEmpresaId())
-                .orElseThrow(() -> new RuntimeException("Empresa selecionada não encontrada."));
+                .orElseThrow(() -> new RuntimeException("Empresa selecionada não encontrado."));
 
         Colaborador novo = new Colaborador();
         novo.setNome(form.getNome());

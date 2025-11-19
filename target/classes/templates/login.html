@@ -3,80 +3,69 @@
 <head th:replace="fragments/layout :: head('Entrar • MenteNeural')"></head>
 
 <body>
-<div th:replace="fragments/layout :: navbar"></div>
+<div th:replace="~{fragments/layout :: navbar}"></div>
 
-<div class="container">
+<div class="container d-flex justify-content-center" style="min-height: 75vh;">
+    <div class="card p-4" style="max-width: 420px; width: 100%; margin-top: 60px;">
 
-    <div class="card" style="max-width:420px;margin:60px auto;padding:40px 32px;">
-
-        <div class="title" style="font-size:26px;margin-bottom:6px;">
+        <h1 class="title mb-1" style="font-size: 26px;">
             Bem-vindo(a) ao MenteNeural
-        </div>
+        </h1>
 
-        <div class="subtitle" style="margin-bottom:30px;">
+        <p class="subtitle mb-4">
             Acesse com seu e-mail corporativo para acompanhar seu bem-estar emocional.
-        </div>
+        </p>
 
-        <!-- Erro -->
+        <!-- Mensagem de erro -->
         <div th:if="${erro}"
-             style="background:#FEF2F2;border:1px solid #FCA5A5;color:#B91C1C;
-                    padding:12px 16px;border-radius:12px;margin-bottom:22px;
-                    font-size:14px;font-weight:500;"
+             class="alert alert-danger fw-semibold py-2 px-3 mb-4"
              th:text="${erro}">
         </div>
 
         <form th:action="@{/login}" th:object="${loginForm}" method="post">
 
-            <!-- EMAIL -->
-            <div style="margin-bottom:20px;">
-                <label style="display:block;font-weight:600;margin-bottom:6px;">
+            <!-- Campo Email -->
+            <div class="mb-3">
+                <label class="form-label fw-semibold">
                     E-mail corporativo
                 </label>
-
                 <input type="email"
                        th:field="*{email}"
+                       class="form-control"
                        placeholder="voce@empresa.com"
-                       style="width:100%;border-radius:14px;border:1px solid #E2E8F0;
-                              padding:12px 16px;font-size:15px;outline:none;transition:0.2s;">
+                       required>
             </div>
 
-            <!-- SENHA -->
-            <div style="margin-bottom:28px;">
-                <label style="display:block;font-weight:600;margin-bottom:6px;">
+            <!-- Campo Senha -->
+            <div class="mb-4">
+                <label class="form-label fw-semibold">
                     Senha
                 </label>
-
                 <input type="password"
                        th:field="*{senha}"
+                       class="form-control"
                        placeholder="Digite sua senha"
-                       style="width:100%;border-radius:14px;border:1px solid #E2E8F0;
-                              padding:12px 16px;font-size:15px;outline:none;transition:0.2s;">
+                       required>
             </div>
 
-            <!-- BOTÃO -->
-            <button type="submit"
-                    class="btn-primary"
-                    style="width:100%;justify-content:center;padding:14px 0;font-size:16px;">
+            <!-- Botão Entrar -->
+            <button type="submit" class="btn btn-primary w-100 py-2" style="font-size: 1rem;">
                 Entrar
             </button>
 
-            <!-- Link de cadastro -->
-            <p style="margin-top:18px;font-size:14px;color:#6C6C70;text-align:center;">
+            <!-- Link Criar Conta -->
+            <p class="text-center mt-3 mb-0" style="font-size: 0.9rem; color: var(--mn-muted);">
                 Ainda não tem conta?
-                <a href="/cadastro"
-                   style="color:#4B7BD8;text-decoration:none;font-weight:500;">
+                <a href="/cadastro" class="fw-semibold" style="color:#4B7BD8;">
                     Criar conta
                 </a>
             </p>
-
         </form>
-
     </div>
 </div>
 
-<!-- Mini efeito de foco (Apple-like) -->
 <style>
-    input:focus {
+    input.form-control:focus {
         border-color: #A7C7E7 !important;
         background: #F8FBFF !important;
         box-shadow: 0 0 0 3px rgba(167,199,231,0.35);
